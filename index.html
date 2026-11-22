@@ -21,7 +21,7 @@
   .editor-view{display:none;width:100%;height:100%;align-items:center;justify-content:center;padding:22px}.has-image .editor-view{display:flex}.has-image .empty-state{display:none}.has-image .dropzone{background:#f0f3f8;border-style:solid;border-color:#e5eaf2}
   .crop-wrap{position:relative;aspect-ratio:1;width:min(100%,390px);border-radius:5px;overflow:hidden;cursor:grab;touch-action:none;box-shadow:0 10px 30px #14284922;background-color:#eee;background-image:linear-gradient(45deg,#dfe5eb 25%,transparent 25%),linear-gradient(-45deg,#dfe5eb 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#dfe5eb 75%),linear-gradient(-45deg,transparent 75%,#dfe5eb 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0}.crop-wrap:active{cursor:grabbing}.crop-wrap canvas{display:block;width:100%;height:100%}.crop-grid{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 33.15%,#ffffff5c 33.3%,#ffffff5c 33.5%,transparent 33.65%,transparent 66.48%,#ffffff5c 66.63%,#ffffff5c 66.83%,transparent 66.98%),linear-gradient(0deg,transparent 33.15%,#ffffff5c 33.3%,#ffffff5c 33.5%,transparent 33.65%,transparent 66.48%,#ffffff5c 66.63%,#ffffff5c 66.83%,transparent 66.98%);border:1px solid #ffffffa6}
   .controls{display:none;margin-top:17px}.has-image .controls{display:block}.control-line{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.hint{color:var(--muted);font-size:12px}.zoom{display:flex;align-items:center;gap:9px;min-width:280px;flex:1}.zoom label{font-size:12px;color:#6b7890;font-weight:650}.zoom input{flex:1;accent-color:var(--blue);min-width:70px}.zoom span{font-size:12px;font-variant-numeric:tabular-nums;color:#63738d;min-width:46px;text-align:right}.zoom-step{height:31px;width:31px;flex:none;border:1px solid #dfe6f0;background:#fff;border-radius:9px;font-size:19px;line-height:1;color:#31435c}.zoom-step:hover{background:#eaf2ff}.small-actions{display:flex;gap:9px;margin-top:17px;flex-wrap:wrap}.small-actions .btn{padding:9px 12px;min-height:39px}.btn-preset{background:#ecf4ff;border-color:#d0e3ff;color:#2864b9}.btn-preset:hover:not(:disabled){background:#deedff}
-  .right{display:flex;flex-direction:column;gap:22px}.preview-body{padding:26px 25px 22px;text-align:center}.emoji-circle{width:136px;height:136px;border-radius:50%;background:#ebf3fe;display:grid;place-items:center;margin:0 auto 19px;position:relative;overflow:hidden;border:6px solid #f7faff;box-shadow:0 0 0 1px #e6ebf3}.emoji-circle canvas{width:100%;height:100%;object-fit:cover}.emoji-placeholder{font-size:47px;line-height:1;position:absolute}.ready .emoji-placeholder{display:none}
+  .rotate-row{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);flex-direction:column;align-items:stretch}.rotate-row .hint{display:block;width:100%}.angle-input{width:69px;min-width:69px;border:1px solid #dfe6f0;border-radius:8px;padding:5px 5px;text-align:center;font-size:12px;color:var(--ink)}.rotate-row .zoom-step{width:38px;font-size:12px;font-weight:750}.hd-download{width:100%;margin-top:10px}.quality-note{color:var(--muted);font-size:12px;line-height:1.45;margin:12px 0 0}.rotate-row .zoom{min-width:0;width:100%;flex:unset}.rotate-row .zoom span{min-width:42px}.rotate-row .zoom label{min-width:65px}.right{display:flex;flex-direction:column;gap:22px}.preview-body{padding:26px 25px 22px;text-align:center}.emoji-circle{width:136px;height:136px;border-radius:50%;background:#ebf3fe;display:grid;place-items:center;margin:0 auto 19px;position:relative;overflow:hidden;border:6px solid #f7faff;box-shadow:0 0 0 1px #e6ebf3}.emoji-circle canvas{width:100%;height:100%;object-fit:cover}.emoji-placeholder{font-size:47px;line-height:1;position:absolute}.ready .emoji-placeholder{display:none}
   .preview-title{font-size:19px;font-weight:750;letter-spacing:-.03em}.preview-sub{margin:6px 0 0;color:var(--muted);font-size:13px}.preview-dots{display:flex;align-items:center;justify-content:center;gap:7px;margin:25px 0 18px}.preview-dots span{width:9px;height:9px;background:#c6d7ed;border-radius:50%}.preview-dots span:nth-child(2){background:#69a5f6}.preview-dots span:nth-child(3){background:#e5cdb4}
   .download{display:flex;width:100%;font-size:14px;padding:13px;min-height:48px}.info{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#6c7b90;font-size:12px;margin-top:17px;border-top:1px solid var(--line);padding-top:15px}.info strong{color:#3e506a}
   .tips{padding:23px 25px}.tips h3{margin:0 0 14px;font-size:15px}.tip{display:flex;gap:12px;font-size:13px;color:#65738c;margin-bottom:14px}.tip:last-child{margin-bottom:0}.tip-icon{height:29px;width:29px;flex:none;display:grid;place-items:center;border-radius:9px;background:#f0f5fd;color:#437fe0;font-weight:750}.tip b{display:block;font-size:13px;color:#25364d;margin-bottom:2px}
@@ -39,11 +39,11 @@
    <section class="panel" id="editorPanel"><div class="panel-head"><h2>Редактор изображения</h2><span class="meta" id="stateLabel">Нет изображения</span></div><div class="editor-inner">
      <div class="dropzone" id="dropzone" tabindex="0" aria-label="Загрузить или перетащить сюда изображение">
        <div class="empty-state"><button class="plus-orb" id="choosePlus" type="button" aria-label="Выбрать изображение" title="Выбрать изображение">+</button><h3>Добавь изображение</h3><p>Перетащи сюда фото или выбери один из вариантов ниже.</p><div class="button-row"><button class="btn btn-primary" id="chooseInitial" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Выбрать фото</button><button class="btn" id="pasteInitial" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6" y="5" width="14" height="16" rx="2"/><path d="M9 3h8v5H9z"/></svg> Из буфера</button></div><p class="hint" id="pasteHint" style="margin-bottom:0">Можно вставить фото из буфера обмена</p></div>
-       <div class="editor-view"><div class="crop-wrap" id="cropWrap" role="img" aria-label="Кадрирование: перетаскивайте фото, чтобы изменить положение"><canvas id="cropCanvas" width="600" height="600"></canvas><div class="crop-grid"></div></div></div>
+       <div class="editor-view"><div class="crop-wrap" id="cropWrap" role="img" aria-label="Кадрирование: перетаскивайте фото, чтобы изменить положение"><canvas id="cropCanvas" width="800" height="800"></canvas><div class="crop-grid"></div></div></div>
      </div>
-     <div class="controls" id="controls"><div class="control-line"><div class="zoom"><label for="zoomRange">Масштаб</label><button class="zoom-step" id="zoomOut" type="button" aria-label="Уменьшить изображение">−</button><input type="range" id="zoomRange" min="5" max="600" step="1" value="100" aria-label="Масштаб изображения"><button class="zoom-step" id="zoomIn" type="button" aria-label="Увеличить изображение">+</button><span id="zoomValue">100%</span></div><span class="hint">100% — фото целиком. Двигайте фото или используйте два пальца.</span></div><div class="small-actions"><button class="btn btn-preset" id="fit" type="button">⤢ Вместить целиком</button><button class="btn btn-preset" id="fill" type="button">▣ Заполнить квадрат</button><button class="btn" id="chooseAnother" type="button">＋ Другое фото</button><button class="btn" id="pasteAnother" type="button">▢ Из буфера</button><button class="btn" id="reset" type="button">↺ Сбросить</button></div></div>
+     <div class="controls" id="controls"><div class="control-line"><div class="zoom"><label for="zoomRange">Масштаб</label><button class="zoom-step" id="zoomOut" type="button" aria-label="Уменьшить изображение">−</button><input type="range" id="zoomRange" min="5" max="600" step="1" value="100" aria-label="Масштаб изображения"><button class="zoom-step" id="zoomIn" type="button" aria-label="Увеличить изображение">+</button><span id="zoomValue">100%</span></div><span class="hint">100% — фото целиком. Двигайте фото или используйте два пальца.</span></div><div class="control-line rotate-row"><div class="zoom"><label for="rotationRange">Поворот</label><button class="zoom-step" id="rotateLeft" type="button" aria-label="Повернуть влево на 1 градус" title="Повернуть влево на 1°">−1°</button><input type="range" id="rotationRange" min="-180" max="180" step="0.1" value="0" aria-label="Угол поворота изображения"><button class="zoom-step" id="rotateRight" type="button" aria-label="Повернуть вправо на 1 градус" title="Повернуть вправо на 1°">+1°</button><input class="angle-input" id="rotationInput" type="number" min="-180" max="180" step="0.1" value="0" aria-label="Угол поворота в градусах"></div><span class="hint">Поворот с точностью до 0,1°. Можно ввести угол вручную.</span></div><div class="small-actions"><button class="btn btn-preset" id="fit" type="button">⤢ Вместить целиком</button><button class="btn btn-preset" id="fill" type="button">▣ Заполнить квадрат</button><button class="btn" id="chooseAnother" type="button">＋ Другое фото</button><button class="btn" id="pasteAnother" type="button">▢ Из буфера</button><button class="btn" id="reset" type="button">↺ Сбросить</button></div></div>
    </div></section>
-   <aside class="right"><section class="panel"><div class="panel-head"><h2>Предпросмотр</h2><span class="meta">В Telegram</span></div><div class="preview-body"><div class="emoji-circle" id="emojiCircle"><canvas id="previewCanvas" width="100" height="100"></canvas><span class="emoji-placeholder">✨</span></div><div class="preview-title">Твой будущий emoji</div><p class="preview-sub">Вот как он может выглядеть в переписке</p><div class="preview-dots"><span></span><span></span><span></span></div><button class="btn btn-primary download" id="download" disabled type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 17v4h16v-4"/></svg> Скачать PNG</button><div class="info"><span>Размер: <strong>100 × 100 px</strong></span><span>Формат: <strong>PNG</strong></span></div></div></section><section class="panel"><div class="tips"><h3>Как это работает</h3><div class="tip"><span class="tip-icon">1</span><div><b>Добавь изображение</b>Из галереи, перетаскиванием или через буфер обмена.</div></div><div class="tip"><span class="tip-icon">2</span><div><b>Настрой кадр</b>Вмести всё фото или заполни квадрат, затем двигай и масштабируй.</div></div><div class="tip"><span class="tip-icon">3</span><div><b>Скачай результат</b>Готовый квадратный PNG 100 × 100, без водяных знаков.</div></div></div></section></aside>
+   <aside class="right"><section class="panel"><div class="panel-head"><h2>Предпросмотр</h2><span class="meta">В Telegram</span></div><div class="preview-body"><div class="emoji-circle" id="emojiCircle"><canvas id="previewCanvas" width="100" height="100"></canvas><span class="emoji-placeholder">✨</span></div><div class="preview-title">Твой будущий emoji</div><p class="preview-sub">Вот как он может выглядеть в переписке</p><div class="preview-dots"><span></span><span></span><span></span></div><button class="btn btn-primary download" id="download" disabled type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 17v4h16v-4"/></svg> Скачать PNG · Telegram 100×100</button><button class="btn hd-download" id="downloadHD" disabled type="button">Скачать HD PNG · 512×512</button><p class="quality-note">100×100 — формат для emoji в Telegram. HD сохранит больше деталей, но не подходит для загрузки как emoji без уменьшения.</p><div class="info"><span>Размер: <strong>100 × 100 px</strong></span><span>Формат: <strong>PNG</strong></span></div></div></section><section class="panel"><div class="tips"><h3>Как это работает</h3><div class="tip"><span class="tip-icon">1</span><div><b>Добавь изображение</b>Из галереи, перетаскиванием или через буфер обмена.</div></div><div class="tip"><span class="tip-icon">2</span><div><b>Настрой кадр</b>Вмести фото, поверни, передвинь или измени масштаб.</div></div><div class="tip"><span class="tip-icon">3</span><div><b>Скачай результат</b>PNG для Telegram 100 × 100 или HD 512 × 512 для других задач.</div></div></div></section></aside>
  </main><div class="footer">Создано для <strong>Telegram emoji</strong> · Фотографии обрабатываются только в твоём браузере</div>
 </div>
 <input id="fileInput" type="file" accept="image/*" hidden>
@@ -63,17 +63,74 @@
    ? 'На телефоне нажми «+», чтобы выбрать фото из галереи.'
    : `Можно просто нажать ${shortcut}`;
 
- let img=null, zoom=1, dx=0, dy=0, objectUrl=null, toastTimer=null;
+ let img=null, zoom=1, rotation=0, dx=0, dy=0, objectUrl=null, toastTimer=null;
  const activePointers=new Map();
- const V=600;
+ const V=800;
  function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
- // At 100%, the *entire* original image fits within the square, even for wide/tall images.
- function dimensions(dim){const f=Math.min(dim/img.naturalWidth,dim/img.naturalHeight)*zoom;return [img.naturalWidth*f,img.naturalHeight*f]}
- // For small images, allow moving within the empty space; for large ones, prevent empty edges.
- function clamp(){if(!img)return;const [w,h]=dimensions(V);const limX=Math.abs(V-w)/2,limY=Math.abs(V-h)/2;dx=Math.max(-limX,Math.min(limX,dx));dy=Math.max(-limY,Math.min(limY,dy))}
- function paint(c,dim){c.clearRect(0,0,dim,dim);if(!img)return;const [w,h]=dimensions(dim), f=dim/V;c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.drawImage(img,(dim-w)/2+dx*f,(dim-h)/2+dy*f,w,h)}
- function render(){clamp();paint(ctx,600);paint(pctx,100);$('zoomValue').textContent=Math.round(zoom*100)+'%'}
- const zoomRange=$('zoomRange');
+ // Zoom is relative to fitting the *rotated* image into a transparent square.
+ function geometry(dim){
+   const rad=rotation*Math.PI/180, c=Math.abs(Math.cos(rad)), sn=Math.abs(Math.sin(rad));
+   const boundW=img.naturalWidth*c+img.naturalHeight*sn;
+   const boundH=img.naturalWidth*sn+img.naturalHeight*c;
+   const base=Math.min(dim/boundW,dim/boundH);
+   const w=img.naturalWidth*base*zoom, h=img.naturalHeight*base*zoom;
+   return {rad,c,sn,w,h,boundW:w*c+h*sn,boundH:w*sn+h*c,base};
+ }
+ function clamp(){
+   if(!img)return;
+   const g=geometry(V),limX=Math.abs(V-g.boundW)/2,limY=Math.abs(V-g.boundH)/2;
+   dx=Math.max(-limX,Math.min(limX,dx));dy=Math.max(-limY,Math.min(limY,dy));
+ }
+ function paint(c,dim){
+   c.clearRect(0,0,dim,dim);if(!img)return;
+   const g=geometry(dim),ratio=dim/V;
+   c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
+   c.save();c.translate(dim/2+dx*ratio,dim/2+dy*ratio);c.rotate(g.rad);
+   c.drawImage(img,-g.w/2,-g.h/2,g.w,g.h);c.restore();
+ }
+ // Progressive downsampling makes small details less jagged than a single large resize.
+ // It cannot restore information lost when exporting an image at only 100 pixels.
+ function downsample(source, output, size){
+   let current=source, width=source.width;
+   const temporary=[];
+   while(width>size*2){
+     const nextWidth=Math.max(size,Math.floor(width/2));
+     const next=document.createElement('canvas');next.width=nextWidth;next.height=nextWidth;
+     const c=next.getContext('2d');c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';
+     c.drawImage(current,0,0,nextWidth,nextWidth);
+     temporary.push(next);current=next;width=nextWidth;
+   }
+   output.clearRect(0,0,size,size);
+   output.imageSmoothingEnabled=true;output.imageSmoothingQuality='high';
+   output.drawImage(current,0,0,size,size);
+ }
+ function exportCanvas(size){
+   const result=document.createElement('canvas');result.width=size;result.height=size;
+   if(size===100){downsample(crop,result.getContext('2d'),size);}
+   else{
+     const master=document.createElement('canvas');
+     master.width=Math.max(size*2,V);master.height=master.width;
+     paint(master.getContext('2d'),master.width);
+     downsample(master,result.getContext('2d'),size);
+   }
+   return result;
+ }
+ function render(){
+   clamp();paint(ctx,V);downsample(crop,pctx,100);
+   $('zoomValue').textContent=Math.round(zoom*100)+'%';
+   $('rotationInput').value=Number(rotation.toFixed(1));
+ }
+ const zoomRange=$('zoomRange'),rotationRange=$('rotationRange');
+ function fillZoom(){
+   if(!img)return 1;
+   const g=geometry(V),edge=g.c+g.sn;
+   // For a rotated rectangle, its original edges must enclose all four square corners.
+   return Math.max(V*edge/(g.w/zoom),V*edge/(g.h/zoom));
+ }
+ function updateZoomLimit(){
+   if(!img)return;
+   zoomRange.max=Math.max(600,Math.ceil(fillZoom()*150),Math.ceil(zoom*100));
+ }
  function setZoom(value, anchorFrom=null, anchorTo=anchorFrom){
    if(!img)return;
    const min=Number(zoomRange.min)/100,max=Number(zoomRange.max)/100;
@@ -85,15 +142,21 @@
    }
    zoom=next;zoomRange.value=Math.round(zoom*100);render();
  }
+ function setRotation(degrees){
+   if(!img)return;
+   rotation=((Math.round(degrees*10)/10+180)%360+360)%360-180;
+   rotationRange.value=rotation;
+   updateZoomLimit();render();
+ }
  function fit(){dx=0;dy=0;setZoom(1)}
- function fill(){dx=0;dy=0;setZoom(Math.max(img.naturalWidth/img.naturalHeight,img.naturalHeight/img.naturalWidth))}
- function reset(){fit()}
+ function fill(){dx=0;dy=0;updateZoomLimit();setZoom(fillZoom())}
+ function reset(){rotation=0;rotationRange.value=0;updateZoomLimit();fit()}
  function clearImageUrl(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null}}
  function loadFile(file){
   if(!file)return;
   if(!file.type.startsWith('image/')){toast('Выбери изображение PNG, JPEG, WebP или другое поддерживаемое фото.');return}
   const url=URL.createObjectURL(file), next=new Image();
-  next.onload=()=>{clearImageUrl();objectUrl=url;img=next;activePointers.clear();panel.classList.add('has-image');circle.classList.add('ready');$('stateLabel').textContent=img.naturalWidth+' × '+img.naturalHeight+' px';$('download').disabled=false;zoomRange.max=Math.max(600,Math.ceil(Math.max(img.naturalWidth/img.naturalHeight,img.naturalHeight/img.naturalWidth)*100));reset();toast('Фото полностью помещено в квадрат. Можно уменьшать, увеличивать и двигать.');};
+  next.onload=()=>{clearImageUrl();objectUrl=url;img=next;activePointers.clear();panel.classList.add('has-image');circle.classList.add('ready');$('stateLabel').textContent=img.naturalWidth+' × '+img.naturalHeight+' px';$('download').disabled=false;$('downloadHD').disabled=false;zoom=1;reset();toast('Фото полностью помещено в квадрат. Можно уменьшать, увеличивать и двигать.');};
   next.onerror=()=>{URL.revokeObjectURL(url);toast('Не удалось открыть изображение. Попробуй PNG, JPEG или WebP.')};
   next.src=url;
  }
@@ -121,6 +184,10 @@
  $('zoomOut').addEventListener('click',()=>setZoom(zoom/1.25));
  $('zoomIn').addEventListener('click',()=>setZoom(zoom*1.25));
  $('fit').addEventListener('click',fit);$('fill').addEventListener('click',fill);
+ rotationRange.addEventListener('input',e=>setRotation(Number(e.target.value)));
+ $('rotateLeft').addEventListener('click',()=>setRotation(rotation-1));
+ $('rotateRight').addEventListener('click',()=>setRotation(rotation+1));
+ $('rotationInput').addEventListener('change',e=>{const val=Number(e.target.value);if(Number.isFinite(val))setRotation(val);else e.target.value=rotation});
  $('reset').addEventListener('click',reset);
  const wrap=$('cropWrap');
  function point(e){const r=wrap.getBoundingClientRect();return {x:(e.clientX-r.left)*V/r.width-V/2,y:(e.clientY-r.top)*V/r.height-V/2}}
@@ -146,10 +213,20 @@
    if(!img)return;e.preventDefault();const p=point(e);
    setZoom(zoom*Math.exp(-e.deltaY*.0015),p);
  },{passive:false});
- $('download').addEventListener('click',()=>{
-  if(!img)return;const canvas=document.createElement('canvas');canvas.width=100;canvas.height=100;paint(canvas.getContext('2d'),100);
-  canvas.toBlob(blob=>{if(!blob){toast('Ошибка при создании PNG.');return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='telegram-emoji-100x100.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);toast('PNG 100 × 100 создан!')},'image/png');
- });
+ function saveImage(size){
+   if(!img)return;
+   const canvas=exportCanvas(size);
+   canvas.toBlob(blob=>{
+     if(!blob){toast('Ошибка при создании PNG.');return}
+     const url=URL.createObjectURL(blob),a=document.createElement('a');
+     a.href=url;a.download=`telegram-emoji-${size}x${size}.png`;
+     document.body.append(a);a.click();a.remove();
+     setTimeout(()=>URL.revokeObjectURL(url),10000);
+     toast(`PNG ${size} × ${size} создан!`);
+   },'image/png');
+ }
+ $('download').addEventListener('click',()=>saveImage(100));
+ $('downloadHD').addEventListener('click',()=>saveImage(512));
  window.addEventListener('beforeunload',clearImageUrl);
 })();
 </script>
