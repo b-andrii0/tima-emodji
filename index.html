@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f7fb">
+<title>Emoji Studio — Telegram 100×100 PNG</title>
+<style>
+  :root{--ink:#172334;--muted:#748097;--blue:#307aef;--line:#e6ebf3;--surface:#fff;--bg:#f5f7fb;--shadow:0 12px 44px rgba(33,58,99,.065)}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;color:var(--ink)}
+  button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.45}button:focus-visible,input:focus-visible,.dropzone:focus-visible{outline:3px solid #99beff;outline-offset:3px}
+  .shell{max-width:1160px;margin:0 auto;padding:28px 30px 55px}.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:45px}
+  .brand{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;letter-spacing:-.035em}.brand-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:11px;background:#307aef;color:white;font-size:23px;box-shadow:0 5px 14px #307aef38}
+  .pill{border:1px solid var(--line);color:#66758b;background:white;border-radius:100px;padding:7px 14px;font-size:12px;font-weight:750;letter-spacing:.035em}
+  .hero{text-align:center;margin-bottom:32px}.eyebrow{color:var(--blue);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin:0 0 13px}.hero h1{font-size:clamp(32px,4.6vw,53px);line-height:1.15;letter-spacing:-.055em;margin:0}.hero p{color:var(--muted);font-size:16px;margin:14px 0 0}
+  .workspace{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(290px,.85fr);align-items:stretch;gap:22px}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:22px 25px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h2{margin:0;font-size:17px;letter-spacing:-.02em}.meta{font-size:12px;color:#8190a5}
+  .editor-inner{padding:0 24px 24px}.dropzone{min-height:410px;border:2px dashed #cbd9ee;border-radius:17px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#f8faff;transition:.2s;border-color .2s}.dropzone.dragover{border-color:var(--blue);background:#eff6ff;box-shadow:inset 0 0 0 2px #307aef20}
+  .empty-state{text-align:center;padding:35px 18px;max-width:320px}.plus-orb{width:82px;height:82px;border-radius:24px;background:white;border:1px solid #e4ebf6;display:grid;place-items:center;margin:0 auto 20px;font-weight:300;color:var(--blue);font-size:47px;box-shadow:0 6px 16px #112f5910;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s}.plus-orb:hover{background:#eef5ff;box-shadow:0 8px 22px #307aef22;transform:translateY(-2px)}.plus-orb:active{transform:translateY(0)}#editorPanel:not(.has-image) .dropzone{cursor:pointer}.empty-state h3{margin:0;font-size:21px;letter-spacing:-.03em}.empty-state p{color:var(--muted);margin:8px 0 24px;font-size:14px}.button-row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .btn{min-height:43px;display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #dfe6f0;border-radius:11px;padding:10px 16px;background:white;color:#293a51;font-weight:650;font-size:13.5px;text-decoration:none;transition:background .15s,transform .15s,box-shadow .15s}.btn:hover:not(:disabled){background:#f5f8fd}.btn:active:not(:disabled){transform:translateY(1px)}.btn-primary{background:var(--blue);border-color:var(--blue);color:white;box-shadow:0 7px 16px #307aef29}.btn-primary:hover:not(:disabled){background:#2067d9}.btn svg{width:17px;height:17px;flex:none}
+  .editor-view{display:none;width:100%;height:100%;align-items:center;justify-content:center;padding:22px}.has-image .editor-view{display:flex}.has-image .empty-state{display:none}.has-image .dropzone{background:#f0f3f8;border-style:solid;border-color:#e5eaf2}
+  .crop-wrap{position:relative;aspect-ratio:1;width:min(100%,390px);border-radius:5px;overflow:hidden;cursor:grab;touch-action:none;box-shadow:0 10px 30px #14284922;background-color:#eee;background-image:linear-gradient(45deg,#dfe5eb 25%,transparent 25%),linear-gradient(-45deg,#dfe5eb 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#dfe5eb 75%),linear-gradient(-45deg,transparent 75%,#dfe5eb 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0}.crop-wrap:active{cursor:grabbing}.crop-wrap canvas{display:block;width:100%;height:100%}.crop-grid{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 33.15%,#ffffff5c 33.3%,#ffffff5c 33.5%,transparent 33.65%,transparent 66.48%,#ffffff5c 66.63%,#ffffff5c 66.83%,transparent 66.98%),linear-gradient(0deg,transparent 33.15%,#ffffff5c 33.3%,#ffffff5c 33.5%,transparent 33.65%,transparent 66.48%,#ffffff5c 66.63%,#ffffff5c 66.83%,transparent 66.98%);border:1px solid #ffffffa6}
+  .controls{display:none;margin-top:17px}.has-image .controls{display:block}.control-line{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}.hint{color:var(--muted);font-size:12px}.zoom{display:flex;align-items:center;gap:9px;min-width:280px;flex:1}.zoom label{font-size:12px;color:#6b7890;font-weight:650}.zoom input{flex:1;accent-color:var(--blue);min-width:70px}.zoom span{font-size:12px;font-variant-numeric:tabular-nums;color:#63738d;min-width:46px;text-align:right}.zoom-step{height:31px;width:31px;flex:none;border:1px solid #dfe6f0;background:#fff;border-radius:9px;font-size:19px;line-height:1;color:#31435c}.zoom-step:hover{background:#eaf2ff}.small-actions{display:flex;gap:9px;margin-top:17px;flex-wrap:wrap}.small-actions .btn{padding:9px 12px;min-height:39px}.btn-preset{background:#ecf4ff;border-color:#d0e3ff;color:#2864b9}.btn-preset:hover:not(:disabled){background:#deedff}
+  .right{display:flex;flex-direction:column;gap:22px}.preview-body{padding:26px 25px 22px;text-align:center}.emoji-circle{width:136px;height:136px;border-radius:50%;background:#ebf3fe;display:grid;place-items:center;margin:0 auto 19px;position:relative;overflow:hidden;border:6px solid #f7faff;box-shadow:0 0 0 1px #e6ebf3}.emoji-circle canvas{width:100%;height:100%;object-fit:cover}.emoji-placeholder{font-size:47px;line-height:1;position:absolute}.ready .emoji-placeholder{display:none}
+  .preview-title{font-size:19px;font-weight:750;letter-spacing:-.03em}.preview-sub{margin:6px 0 0;color:var(--muted);font-size:13px}.preview-dots{display:flex;align-items:center;justify-content:center;gap:7px;margin:25px 0 18px}.preview-dots span{width:9px;height:9px;background:#c6d7ed;border-radius:50%}.preview-dots span:nth-child(2){background:#69a5f6}.preview-dots span:nth-child(3){background:#e5cdb4}
+  .download{display:flex;width:100%;font-size:14px;padding:13px;min-height:48px}.info{display:flex;justify-content:space-between;align-items:center;gap:10px;color:#6c7b90;font-size:12px;margin-top:17px;border-top:1px solid var(--line);padding-top:15px}.info strong{color:#3e506a}
+  .tips{padding:23px 25px}.tips h3{margin:0 0 14px;font-size:15px}.tip{display:flex;gap:12px;font-size:13px;color:#65738c;margin-bottom:14px}.tip:last-child{margin-bottom:0}.tip-icon{height:29px;width:29px;flex:none;display:grid;place-items:center;border-radius:9px;background:#f0f5fd;color:#437fe0;font-weight:750}.tip b{display:block;font-size:13px;color:#25364d;margin-bottom:2px}
+  .footer{text-align:center;color:#94a0b1;font-size:12px;margin-top:32px}.footer strong{color:#6b7c96}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:#17263d;color:white;max-width:min(440px,calc(100vw - 30px));padding:12px 18px;border-radius:12px;font-size:13px;box-shadow:0 15px 40px #1f324333;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+  @media(max-width:790px){.shell{padding:20px 17px 45px}.nav{margin-bottom:29px}.workspace{grid-template-columns:1fr}.hero{margin-bottom:25px}.dropzone{min-height:360px}.right{display:grid;grid-template-columns:1fr 1fr;gap:13px}.preview-body{padding:20px 19px}.tips{padding:20px 17px}.panel-head{padding:18px 19px}.editor-inner{padding:0 17px 18px}}
+  @media(max-width:520px){.hero h1{font-size:33px}.hero p{font-size:14px}.right{display:flex}.dropzone{min-height:330px}.editor-view{padding:14px}.crop-wrap{width:min(100%,340px)}.zoom{min-width:0;width:100%;flex-wrap:wrap}.zoom input{min-width:80px}.small-actions .btn{flex:1 1 auto}.button-row{flex-direction:column;align-items:center}.button-row .btn{min-width:205px}.nav .pill{font-size:10px;padding:6px 9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+ <header class="nav"><div class="brand"><span class="brand-icon">✦</span> Emoji Studio</div><div class="pill">TELEGRAM EMOJI · PNG</div></header>
+ <section class="hero"><p class="eyebrow">ТВОЯ МИНИ-СТУДИЯ</p><h1>Создавай свои emoji <span style="color:#307aef">легко.</span></h1><p>Добавь фотографию, выбери идеальный кадр и скачай PNG 100 × 100.</p></section>
+ <main class="workspace">
+   <section class="panel" id="editorPanel"><div class="panel-head"><h2>Редактор изображения</h2><span class="meta" id="stateLabel">Нет изображения</span></div><div class="editor-inner">
+     <div class="dropzone" id="dropzone" tabindex="0" aria-label="Загрузить или перетащить сюда изображение">
+       <div class="empty-state"><button class="plus-orb" id="choosePlus" type="button" aria-label="Выбрать изображение" title="Выбрать изображение">+</button><h3>Добавь изображение</h3><p>Перетащи сюда фото или выбери один из вариантов ниже.</p><div class="button-row"><button class="btn btn-primary" id="chooseInitial" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Выбрать фото</button><button class="btn" id="pasteInitial" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6" y="5" width="14" height="16" rx="2"/><path d="M9 3h8v5H9z"/></svg> Из буфера</button></div><p class="hint" id="pasteHint" style="margin-bottom:0">Можно вставить фото из буфера обмена</p></div>
+       <div class="editor-view"><div class="crop-wrap" id="cropWrap" role="img" aria-label="Кадрирование: перетаскивайте фото, чтобы изменить положение"><canvas id="cropCanvas" width="600" height="600"></canvas><div class="crop-grid"></div></div></div>
+     </div>
+     <div class="controls" id="controls"><div class="control-line"><div class="zoom"><label for="zoomRange">Масштаб</label><button class="zoom-step" id="zoomOut" type="button" aria-label="Уменьшить изображение">−</button><input type="range" id="zoomRange" min="5" max="600" step="1" value="100" aria-label="Масштаб изображения"><button class="zoom-step" id="zoomIn" type="button" aria-label="Увеличить изображение">+</button><span id="zoomValue">100%</span></div><span class="hint">100% — фото целиком. Двигайте фото или используйте два пальца.</span></div><div class="small-actions"><button class="btn btn-preset" id="fit" type="button">⤢ Вместить целиком</button><button class="btn btn-preset" id="fill" type="button">▣ Заполнить квадрат</button><button class="btn" id="chooseAnother" type="button">＋ Другое фото</button><button class="btn" id="pasteAnother" type="button">▢ Из буфера</button><button class="btn" id="reset" type="button">↺ Сбросить</button></div></div>
+   </div></section>
+   <aside class="right"><section class="panel"><div class="panel-head"><h2>Предпросмотр</h2><span class="meta">В Telegram</span></div><div class="preview-body"><div class="emoji-circle" id="emojiCircle"><canvas id="previewCanvas" width="100" height="100"></canvas><span class="emoji-placeholder">✨</span></div><div class="preview-title">Твой будущий emoji</div><p class="preview-sub">Вот как он может выглядеть в переписке</p><div class="preview-dots"><span></span><span></span><span></span></div><button class="btn btn-primary download" id="download" disabled type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 17v4h16v-4"/></svg> Скачать PNG</button><div class="info"><span>Размер: <strong>100 × 100 px</strong></span><span>Формат: <strong>PNG</strong></span></div></div></section><section class="panel"><div class="tips"><h3>Как это работает</h3><div class="tip"><span class="tip-icon">1</span><div><b>Добавь изображение</b>Из галереи, перетаскиванием или через буфер обмена.</div></div><div class="tip"><span class="tip-icon">2</span><div><b>Настрой кадр</b>Вмести всё фото или заполни квадрат, затем двигай и масштабируй.</div></div><div class="tip"><span class="tip-icon">3</span><div><b>Скачай результат</b>Готовый квадратный PNG 100 × 100, без водяных знаков.</div></div></div></section></aside>
+ </main><div class="footer">Создано для <strong>Telegram emoji</strong> · Фотографии обрабатываются только в твоём браузере</div>
+</div>
+<input id="fileInput" type="file" accept="image/*" hidden>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+(()=>{
+ "use strict";
+ const $=id=>document.getElementById(id);
+ const crop=$('cropCanvas'), preview=$('previewCanvas'), panel=$('editorPanel'), circle=$('emojiCircle'), input=$('fileInput');
+ const ctx=crop.getContext('2d'), pctx=preview.getContext('2d');
+ // Match instructions to the input method. Mobile browsers may not support image clipboard reads.
+ const platform=(navigator.userAgentData?.platform||navigator.platform||'').toLowerCase();
+ const isTouchMobile=/android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent) ||
+   (/mac/i.test(platform) && navigator.maxTouchPoints>1);
+ const shortcut=/mac|iphone|ipad|ipod/.test(platform) ? '⌘V' : 'Ctrl+V';
+ $('pasteHint').textContent=isTouchMobile
+   ? 'На телефоне нажми «+», чтобы выбрать фото из галереи.'
+   : `Можно просто нажать ${shortcut}`;
+
+ let img=null, zoom=1, dx=0, dy=0, objectUrl=null, toastTimer=null;
+ const activePointers=new Map();
+ const V=600;
+ function toast(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3500)}
+ // At 100%, the *entire* original image fits within the square, even for wide/tall images.
+ function dimensions(dim){const f=Math.min(dim/img.naturalWidth,dim/img.naturalHeight)*zoom;return [img.naturalWidth*f,img.naturalHeight*f]}
+ // For small images, allow moving within the empty space; for large ones, prevent empty edges.
+ function clamp(){if(!img)return;const [w,h]=dimensions(V);const limX=Math.abs(V-w)/2,limY=Math.abs(V-h)/2;dx=Math.max(-limX,Math.min(limX,dx));dy=Math.max(-limY,Math.min(limY,dy))}
+ function paint(c,dim){c.clearRect(0,0,dim,dim);if(!img)return;const [w,h]=dimensions(dim), f=dim/V;c.imageSmoothingEnabled=true;c.imageSmoothingQuality='high';c.drawImage(img,(dim-w)/2+dx*f,(dim-h)/2+dy*f,w,h)}
+ function render(){clamp();paint(ctx,600);paint(pctx,100);$('zoomValue').textContent=Math.round(zoom*100)+'%'}
+ const zoomRange=$('zoomRange');
+ function setZoom(value, anchorFrom=null, anchorTo=anchorFrom){
+   if(!img)return;
+   const min=Number(zoomRange.min)/100,max=Number(zoomRange.max)/100;
+   const next=Math.min(max,Math.max(min,value));
+   if(anchorFrom&&anchorTo){
+     const ratio=next/zoom;
+     dx=anchorTo.x-(anchorFrom.x-dx)*ratio;
+     dy=anchorTo.y-(anchorFrom.y-dy)*ratio;
+   }
+   zoom=next;zoomRange.value=Math.round(zoom*100);render();
+ }
+ function fit(){dx=0;dy=0;setZoom(1)}
+ function fill(){dx=0;dy=0;setZoom(Math.max(img.naturalWidth/img.naturalHeight,img.naturalHeight/img.naturalWidth))}
+ function reset(){fit()}
+ function clearImageUrl(){if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null}}
+ function loadFile(file){
+  if(!file)return;
+  if(!file.type.startsWith('image/')){toast('Выбери изображение PNG, JPEG, WebP или другое поддерживаемое фото.');return}
+  const url=URL.createObjectURL(file), next=new Image();
+  next.onload=()=>{clearImageUrl();objectUrl=url;img=next;activePointers.clear();panel.classList.add('has-image');circle.classList.add('ready');$('stateLabel').textContent=img.naturalWidth+' × '+img.naturalHeight+' px';$('download').disabled=false;zoomRange.max=Math.max(600,Math.ceil(Math.max(img.naturalWidth/img.naturalHeight,img.naturalHeight/img.naturalWidth)*100));reset();toast('Фото полностью помещено в квадрат. Можно уменьшать, увеличивать и двигать.');};
+  next.onerror=()=>{URL.revokeObjectURL(url);toast('Не удалось открыть изображение. Попробуй PNG, JPEG или WebP.')};
+  next.src=url;
+ }
+ function choose(){input.click()}
+ $('choosePlus').addEventListener('click',choose);$('chooseInitial').addEventListener('click',choose);$('chooseAnother').addEventListener('click',choose);
+ input.addEventListener('change',()=>{if(input.files?.[0])loadFile(input.files[0]);input.value=''})
+ function pasteFiles(files){for(const f of files){if(f&&f.type.startsWith('image/')){loadFile(f);return true}}return false}
+ document.addEventListener('paste',e=>{const files=[...(e.clipboardData?.files||[])];if(!files.length){for(const item of (e.clipboardData?.items||[])){if(item.type.startsWith('image/')){const f=item.getAsFile();if(f)files.push(f)}}}if(pasteFiles(files))e.preventDefault()});
+ async function readClipboard(){
+  if(!navigator.clipboard?.read){toast(isTouchMobile ? 'Чтение фото из буфера здесь недоступно. Нажми «+», чтобы открыть галерею.' : `В этом браузере скопируй фото и нажми ${shortcut}.`);return}
+  try{
+   const items=await navigator.clipboard.read();
+   for(const item of items){const typ=item.types.find(t=>t.startsWith('image/'));if(typ){const blob=await item.getType(typ);loadFile(new File([blob],'clipboard.png',{type:typ}));return}}
+   toast('В буфере обмена нет изображения. Скопируй фото или скриншот.')
+  }catch(e){toast(isTouchMobile ? 'Браузер не разрешил вставку. Нажми «+», чтобы открыть галерею.' : `Браузер не разрешил чтение буфера. Нажми ${shortcut} или открой сайт через HTTPS.`)}
+ }
+ $('pasteInitial').addEventListener('click',readClipboard);$('pasteAnother').addEventListener('click',readClipboard);
+ const zone=$('dropzone');
+ zone.addEventListener('click',e=>{if(!img && !e.target.closest('button'))choose()});
+ for(const name of ['dragenter','dragover'])zone.addEventListener(name,e=>{e.preventDefault();zone.classList.add('dragover')});
+ zone.addEventListener('dragleave',e=>{if(!zone.contains(e.relatedTarget))zone.classList.remove('dragover')});
+ zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('dragover');if(!pasteFiles([...(e.dataTransfer?.files||[])]))toast('Перетащи файл изображения.')});
+ zone.addEventListener('keydown',e=>{if(e.target===zone&&!img&&(e.key==='Enter'||e.key===' ')){e.preventDefault();choose()}})
+ zoomRange.addEventListener('input',e=>setZoom(Number(e.target.value)/100));
+ $('zoomOut').addEventListener('click',()=>setZoom(zoom/1.25));
+ $('zoomIn').addEventListener('click',()=>setZoom(zoom*1.25));
+ $('fit').addEventListener('click',fit);$('fill').addEventListener('click',fill);
+ $('reset').addEventListener('click',reset);
+ const wrap=$('cropWrap');
+ function point(e){const r=wrap.getBoundingClientRect();return {x:(e.clientX-r.left)*V/r.width-V/2,y:(e.clientY-r.top)*V/r.height-V/2}}
+ function centerAndDistance(points){
+   const [a,b]=points;return {x:(a.x+b.x)/2,y:(a.y+b.y)/2,d:Math.hypot(a.x-b.x,a.y-b.y)};
+ }
+ wrap.addEventListener('pointerdown',e=>{
+   if(!img)return;
+   e.preventDefault();activePointers.set(e.pointerId,point(e));wrap.setPointerCapture(e.pointerId);
+ });
+ wrap.addEventListener('pointermove',e=>{
+   if(!img||!activePointers.has(e.pointerId))return;
+   const before=[...activePointers.values()],previous=activePointers.get(e.pointerId),current=point(e);
+   activePointers.set(e.pointerId,current);
+   if(activePointers.size===1){dx+=current.x-previous.x;dy+=current.y-previous.y;render();return}
+   if(activePointers.size===2){
+     const a=centerAndDistance(before),b=centerAndDistance([...activePointers.values()]);
+     if(a.d>0)setZoom(zoom*b.d/a.d,{x:a.x,y:a.y},{x:b.x,y:b.y});
+   }
+ });
+ for(const ev of ['pointerup','pointercancel','lostpointercapture'])wrap.addEventListener(ev,e=>activePointers.delete(e.pointerId));
+ wrap.addEventListener('wheel',e=>{
+   if(!img)return;e.preventDefault();const p=point(e);
+   setZoom(zoom*Math.exp(-e.deltaY*.0015),p);
+ },{passive:false});
+ $('download').addEventListener('click',()=>{
+  if(!img)return;const canvas=document.createElement('canvas');canvas.width=100;canvas.height=100;paint(canvas.getContext('2d'),100);
+  canvas.toBlob(blob=>{if(!blob){toast('Ошибка при создании PNG.');return}const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='telegram-emoji-100x100.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),10000);toast('PNG 100 × 100 создан!')},'image/png');
+ });
+ window.addEventListener('beforeunload',clearImageUrl);
+})();
+</script>
+</body>
+</html>
